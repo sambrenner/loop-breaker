@@ -32,7 +32,7 @@ const loopBreaker = recast.parse(`var __loopBreaker = (function() {
       loops[i].safe = true;
     }
   };
-}());\n`).program.body;
+}());`.replace(/\n/g, "")).program.body;
 
 function fixLoop({node, parentPath}, i) {
   const check = recast.parse(`__loopBreaker.check(${i});`).program.body;
